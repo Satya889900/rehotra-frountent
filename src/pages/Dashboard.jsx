@@ -27,7 +27,7 @@ export default function Dashboard() {
   const [managers, setManagers] = useState([]);
   const [buildings, setBuildings] = useState([]);
 
-  useEffect(() => {
+  useEffect(() => {  
     const loadData = async () => {
       try {
         const [ownersRes, tenantsRes, managersRes, buildingsRes] =
