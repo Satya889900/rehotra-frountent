@@ -57,9 +57,6 @@ export default function Services(){
         }
       ]
       
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
       setProfile(mockProfile)
       setServices(mockServices)
     } catch (error) {
