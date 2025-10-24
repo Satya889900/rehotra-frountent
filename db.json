@@ -1,0 +1,26 @@
+{
+  "users": [
+    { "id": 1, "email": "demo@admin.com", "password": "demo123", "name": "Admin" }
+  ],
+  "owners": [
+    { "id": 1, "name": "Alice Johnson", "email": "alice@example.com", "phone": "9876543210", "flats": "A-101, A-102", "createdAt": "2025-10-01" },
+    { "id": 2, "name": "Bob Singh", "email": "bob@example.com", "phone": "9123456780", "flats": "B-201", "createdAt": "2025-09-20" }
+  ],
+  "managers": [
+    { "id": 1, "name": "Mr. Kumar", "phone": "9000000001", "buildings": "Block A, Block B" }
+  ],
+  "tenants": [
+    { "id": 1, "name": "Sita R", "apt": "A-101", "rent": 12000, "status": "Paid", "phone": "9123450000" },
+    { "id": 2, "name": "Ramesh", "apt": "B-201", "rent": 15000, "status": "Due", "phone": "9123451111" }
+  ],
+  "services": [
+    { "id": 1, "name": "Ram", "role": "Electrician", "phone": "9000001234", "active": true },
+    { "id": 2, "name": "Shyam", "role": "Cleaner", "phone": "9000005678", "active": false }
+  ],
+  "payments": [
+    { "id": 1, "month": "2025-01", "income": 40000 },
+    { "id": 2, "month": "2025-02", "income": 38000 },
+    { "id": 3, "month": "2025-03", "income": 42000 },
+    { "id": 4, "month": "2025-04", "income": 41000 }
+  ]
+}
