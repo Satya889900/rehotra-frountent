@@ -108,12 +108,6 @@ return (
 <h2 className="text-xl font-semibold text-gray-900">Manager Management</h2>
 <div className="flex items-center gap-3">
 <TableSearch query={query} setQuery={setQuery} placeholder="Search By ID, phone, Manager name, Owner Name, building name" />
-<button
-onClick={() => { setEditing(null); setOpen(true) }}
-className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
->
-Add Manager
-</button>
 </div>
 </div>
 

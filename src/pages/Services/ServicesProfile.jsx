@@ -17,8 +17,6 @@ export default function Services(){
       setLoading(true)
       setError(null)
 
-      // This data would typically come from an API call like `api.get(`/services/${id}`)`
-      // For now, we'll use the data from the list page to find the correct person.
       const servicesData = [
         { id: 1, name: "Priyanka", phone: "+91 8907654321", service: "Electrician", verified: true, avatar: "https://i.pravatar.cc/150?img=1" },
         { id: 2, name: "Neha", phone: "+91 8907654321", service: "Plumber", verified: true, avatar: "https://i.pravatar.cc/150?img=2" },
@@ -71,7 +69,7 @@ export default function Services(){
         },
         {
           id: 2,
-          building: 'Anita Villa',
+          building: 'Anita Villa', 
           amount: 1000,
           serviceDate: '03 Feb 2025',
           transactionMode: 'UPI (Pay)'
@@ -212,7 +210,7 @@ export default function Services(){
                       <div className="font-medium text-gray-900 mb-0.5">Address</div>
                       <div className="truncate">{profile.address}</div>
                     </div>
-                  </div>
+                  </div>   
                 </div>
               </div>
             </div>

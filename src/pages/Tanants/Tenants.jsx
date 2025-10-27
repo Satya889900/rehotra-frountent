@@ -77,15 +77,6 @@ return (
           setQuery={setQuery}
           placeholder="Search by ID, Phone, or Building Name"
         />
-<button
-onClick={() => {
-          setOpen(true);
-          setEditing(null);
-}}
-className="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition-colors"
->
-Add Tenant
-</button>
 </div>
 </div>
 
@@ -211,7 +202,7 @@ Add Tenant
       />
       <input
         placeholder="Move-In Date"
-        value={form.moveIn}
+        value={form.moveIn} 
         onChange={(e) => setForm({ ...form, moveIn: e.target.value })}
         className="w-full px-3 py-2 border rounded"
       />

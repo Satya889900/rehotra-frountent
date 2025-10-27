@@ -34,8 +34,10 @@ return (
 className={`${navWidth} bg-white h-screen p-4 sticky top-0 border-r shadow-sm transition-all duration-300 ease-in-out flex flex-col`}
 >
 {/* Logo + Toggle */}
-  <div className="flex justify-center items-center mb-8">
-    <img src="/logos.jpg" alt="Logo" className={`transition-all duration-300 ${sidebarOpen ? 'h-14' : 'h-10'}`} />
+  <div className={`flex items-center mb-8 ${sidebarOpen ? 'justify-start' : 'justify-center'}`}>
+    <div className="w-full flex justify-center">
+      <img src="/logos.jpg" alt="Logo" className={`transition-all duration-300 ${sidebarOpen ? 'h-14' : 'h-10'}`} />
+    </div>
   </div>
 
 
