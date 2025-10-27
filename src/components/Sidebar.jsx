@@ -204,7 +204,7 @@ className={`${navWidth} bg-white h-screen p-4 sticky top-0 border-r shadow-sm tr
         <img
           src={user.avatar}
           alt={user.name}
-          className="w-8 h-8 rounded-full flex-shrink-0"
+          className="w-8 h-8 rounded-full shrink-0"
         />
         {sidebarOpen && (
           <div className="min-w-0 flex-1">
@@ -217,7 +217,7 @@ className={`${navWidth} bg-white h-screen p-4 sticky top-0 border-r shadow-sm tr
           </div>
         )}
         {sidebarOpen && (
-          <ChevronRight size={16} className="text-gray-400 ml-auto flex-shrink-0" />
+          <ChevronRight size={16} className="text-gray-400 ml-auto shrink-0" />
         )}
       </div>
     </div>
