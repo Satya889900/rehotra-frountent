@@ -1,18 +1,70 @@
 import React, { useEffect, useState } from 'react'
-import api from '../api/axios'
-import Modal from '../components/Modal'
-import TableSearch from '../components/TableSearch'
+import { useNavigate } from 'react-router-dom'
+import api from '../../api/axios'
+import Modal from '../../components/Modal'
+import TableSearch from '../../components/TableSearch'
 
-export default function Owners(){
-  const [owners, setOwners] = useState([])
-  const [query, setQuery] = useState('')
+function Owners(){
+  const [owners, setOwners] = useState([
+    {
+      id: 'RO213132349876',
+      name: 'Alex Miller',
+      mobile: '+91 9123456780',
+      buildings: 'Shanti Nivas, Anandam Residency, Vasudha Complex',
+      avatar: 'https://randomuser.me/api/portraits/men/11.jpg',
+    },
+    {
+      id: 'RO213132349876',
+      name: 'Preethi Singh',
+      mobile: '+91 9123456780',
+      buildings: 'Shanti Nivas, Anandam Residency, Vasudha Complex',
+      avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
+    },
+    {
+      id: 'RO213132349876',
+      name: 'Preethi Singh',
+      mobile: '+91 9123456780',
+      buildings: 'Nirvana Nivas, Archana Builds, Divya Dham, Eco Oasis',
+      avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
+    },
+    {
+      id: 'RO213132349876',
+      name: 'Mahesh Gowda',
+      mobile: '+91 9123456780',
+      buildings: 'Shanti Nivas, Anandam Residency',
+      avatar: 'https://randomuser.me/api/portraits/men/22.jpg',
+    },
+    {
+      id: 'RO213132349876',
+      name: 'Preethi Singh',
+      mobile: '+91 9123456780',
+      buildings: 'Eco Oasis',
+      avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
+    },
+    {
+      id: 'RO213132349876',
+      name: 'Mahesh Gowda',
+      mobile: '+91 9123456780',
+      buildings: 'Shanti Nivas, Anandam Residency',
+      avatar: 'https://randomuser.me/api/portraits/men/22.jpg',
+    },
+    {
+      id: 'RO213132349876',
+      name: 'Preethi Singh',
+      mobile: '+91 9123456780',
+      buildings: 'Nirvana Nivas, Archana Builds, Divya Dham',
+      avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
+    },
+  ])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [open, setOpen] = useState(false)
   const [editing, setEditing] = useState(null)
+  const [query, setQuery] = useState('')
   const [form, setForm] = useState({name:'', mobile:'', buildings:''})
   const itemsPerPage = 10
+  const navigate = useNavigate();
 
   useEffect(()=>{ load() }, [])
   useEffect(()=>{ setCurrentPage(1) }, [query])
@@ -44,7 +96,9 @@ export default function Owners(){
 
   const remove = async (id)=>{ if(!confirm('Delete owner?')) return; await api.delete(`/owners/${id}`); load() }
 
-  const startEdit = (o)=>{ setEditing(o); setForm({name:o.name, mobile:o.mobile, buildings:o.buildings}); setOpen(true) }
+  const startEdit = (o) => {
+    navigate('/owner-profile'); // Go to static profile page
+  };
 
   const filtered = owners.filter(o => 
     query === '' ||
@@ -319,3 +373,4 @@ export default function Owners(){
     </div>
   )
 }
+export default Owners

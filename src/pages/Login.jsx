@@ -22,7 +22,7 @@ export default function Login() {
     );
     if (user) {
       localStorage.setItem("pms_user", JSON.stringify(user));
-      nav("/");
+      nav("/dashboard");
     } else {
       setErr("Invalid email or password");
     }

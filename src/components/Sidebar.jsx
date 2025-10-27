@@ -43,7 +43,7 @@ className={`${navWidth} bg-white h-screen p-4 sticky top-0 border-r shadow-sm tr
   <nav className="flex-1 space-y-1">
     {/* Dashboard */}
     <NavLink
-      to="/"
+      to="/dashboard"
       className={({ isActive }) =>
         `flex items-center gap-3 px-3 py-2 rounded-lg font-medium transition-colors ${
           isActive

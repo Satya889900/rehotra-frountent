@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import api from '../api/axios'
+import api from '../../api/axios'
+import { useParams } from 'react-router-dom';
 
 export default function Services(){
   const [profile, setProfile] = useState(null)
@@ -7,17 +8,45 @@ export default function Services(){
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  const { id } = useParams();
+
   useEffect(()=>{ load() },[])
   
   const load = async () => {
     try {
       setLoading(true)
       setError(null)
-      // Mock data for demonstration - replace with actual API calls
-      const mockProfile = {
-        name: 'Alex Thomson',
-        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=96&h=96&q=80',
-        phone: '+91 78957 6543',
+
+      // This data would typically come from an API call like `api.get(`/services/${id}`)`
+      // For now, we'll use the data from the list page to find the correct person.
+      const servicesData = [
+        { id: 1, name: "Priyanka", phone: "+91 8907654321", service: "Electrician", verified: true, avatar: "https://i.pravatar.cc/150?img=1" },
+        { id: 2, name: "Neha", phone: "+91 8907654321", service: "Plumber", verified: true, avatar: "https://i.pravatar.cc/150?img=2" },
+        { id: 3, name: "Abhishek", phone: "+91 8907654321", service: "Carpenter", verified: true, avatar: "https://i.pravatar.cc/150?img=3" },
+        { id: 4, name: "Rahul", phone: "+91 8907654321", service: "Painter", verified: true, avatar: "https://i.pravatar.cc/150?img=4" },
+        { id: 5, name: "Amit", phone: "+91 8907654321", service: "Electrician", verified: true, avatar: "https://i.pravatar.cc/150?img=5" },
+        { id: 6, name: "Ankita", phone: "+91 8907654321", service: "Carpenter", verified: false, avatar: "https://i.pravatar.cc/150?img=6" },
+        { id: 7, name: "Ashish", phone: "+91 8907654321", service: "Plumber", verified: true, avatar: "https://i.pravatar.cc/150?img=7" },
+        { id: 8, name: "Deepak", phone: "+91 8907654321", service: "Electrician", verified: false, avatar: "https://i.pravatar.cc/150?img=8" },
+        { id: 9, name: "Anjali", phone: "+91 8907654321", service: "Plumber", verified: false, avatar: "https://i.pravatar.cc/150?img=9" },
+        { id: 10, name: "Rohit", phone: "+91 8907654321", service: "Plumber", verified: true, avatar: "https://i.pravatar.cc/150?img=10" },
+        { id: 11, name: "Ajay KS", phone: "+91 7412435678", service: "Plumber", verified: true, avatar: "https://i.pravatar.cc/150?img=11" },
+      ];
+
+      const person = servicesData.find(p => p.id === parseInt(id));
+
+      if (!person) {
+        setError(`Service provider with ID ${id} not found.`);
+        setLoading(false);
+        return;
+      }
+
+      const profileData = {
+        name: person.name,
+        avatar: person.avatar,
+        phone: person.phone,
+        profession: person.service,
+        verified: person.verified,
         dob: '26/11/2002',
         gender: 'Male',
         referredBy: 'Ravi Kumar',
@@ -25,7 +54,6 @@ export default function Services(){
         joinedDate: '26/11/2002',
         address: '#123, 3rd flr, 4th Cross 5th main, RR Nagar, Bengaluru 560068 (native)',
         religion: 'Hindu',
-        profession: 'Electrician',
         electricalLicense: 'EL20KA105',
         tradeLicense: 'Business License',
         serviceRange: '5 Kms',
@@ -57,7 +85,7 @@ export default function Services(){
         }
       ]
       
-      setProfile(mockProfile)
+      setProfile(profileData)
       setServices(mockServices)
     } catch (error) {
       console.error('Error loading data:', error)
@@ -134,9 +162,11 @@ export default function Services(){
               <div className="flex-1 min-w-0">
                 <h3 className="text-xl font-bold text-gray-900 mb-1 flex items-center">
                   {profile.name}
-                  <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                    Verified
-                  </span>
+                  {profile.verified && (
+                    <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      Verified
+                    </span>
+                  )}
                 </h3>
                 <div className="space-y-3 text-sm text-gray-600">
                   <div className="flex items-center">
@@ -213,7 +243,7 @@ export default function Services(){
                 </div>
               </div>
               <div className="flex items-start">
-                <svg className="w-4 h-4 mr-2 mt-0.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 mr-2 mt-0.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
                 <div className="min-w-0 flex-1">
