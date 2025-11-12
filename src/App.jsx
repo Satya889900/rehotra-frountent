@@ -31,8 +31,8 @@ export default function App(){
                   <Routes>
                     <Route index element={<Dashboard />} />
                     <Route path="dashboard" element={<Dashboard />} />
-                    <Route path="owners" element={<Owners />} />
-                    <Route path="owner-profile" element={<OwnerProfile />} />
+                    <Route path="owners" element={<Owners />} /> 
+                    <Route path="owner-profile/:id" element={<OwnerProfile />} />
                     <Route path="managers" element={<Managers />} />
 <Route path="/manager-profile/:id" element={<ManagerProfile />} />
                     <Route path="tenants" element={<Tenants />} />

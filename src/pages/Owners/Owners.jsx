@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import api from '../../api/axios'
 import Modal from '../../components/Modal'
 import TableSearch from '../../components/TableSearch'
+import { Filter } from "lucide-react";
 
 function Owners(){
   const [owners, setOwners] = useState([
@@ -96,9 +97,10 @@ function Owners(){
 
   const remove = async (id)=>{ if(!confirm('Delete owner?')) return; await api.delete(`/owners/${id}`); load() }
 
-  const startEdit = (o) => {
-    navigate('/owner-profile'); // Go to static profile page
-  };
+ const startEdit = (o) => {
+  navigate(`/owner-profile/${o.id}`, { state: { owner: o } });
+};
+
 
   const filtered = owners.filter(o => 
     query === '' ||
@@ -175,22 +177,45 @@ function Owners(){
 
   return (
     <div className="p-6 space-y-4 bg-gray-50 min-h-screen">
-      <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
-        <h2 className="text-xl font-semibold text-gray-900">Owner Management</h2>
-        <div className="flex items-center gap-3">
-          <TableSearch 
-            query={query} 
-            setQuery={setQuery} 
-            placeholder="Search ID, phone, owner name, building name" 
-          />
-          <button 
-            onClick={()=>{setEditing(null); setOpen(true)}} 
-            className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
-          >
-            Add Owner
-          </button>
-        </div>
-      </div>
+   <div className="flex flex-wrap items-center justify-between gap-4 bg-white p-4 rounded-lg shadow-sm">
+  {/* Left Section - Title */}
+  <h2 className="text-xl font-semibold text-gray-900 whitespace-nowrap">
+    Owner Management
+  </h2>
+
+  {/* Right Section - Filter, Search, Add Button */}
+  <div className="flex flex-1 items-center justify-end gap-3 min-w-[300px]">
+    {/* Filter Button */}
+    <button
+      className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex-shrink-0"
+      title="Filter options"
+    >
+      <Filter size={20} />
+    </button>
+
+    {/* Search Input (takes most of the width) */}
+   <div className="flex-1 max-w-md mt-4">
+  <TableSearch
+    query={query}
+    setQuery={setQuery}
+    placeholder="Search ID, phone, owner name, building name"
+  />
+</div>
+
+
+    {/* Add Owner Button */}
+    <button
+      onClick={() => {
+        setEditing(null);
+        setOpen(true);
+      }}
+      className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 flex-shrink-0"
+    >
+      + Add Owner
+    </button>
+  </div>
+</div>
+
 
       <div className="bg-white rounded-lg shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
